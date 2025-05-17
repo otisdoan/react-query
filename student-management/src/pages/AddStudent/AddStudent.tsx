@@ -3,7 +3,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import http from 'utils/http'
 import { addStudent, getStudent, updateStudent } from 'apis/students.api'
 import { Student } from 'types/students.type'
-import { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { isAxiosError } from 'utils/utils'
 import { toast } from 'react-toastify'
 
@@ -20,8 +20,8 @@ const initialFormState: FormStateType = {
 
 type FormError =
   | {
-      [key in keyof FormStateType]: string
-    }
+    [key in keyof FormStateType]: string
+  }
   | null
 
 const gender = {
@@ -29,7 +29,7 @@ const gender = {
   female: 'Female',
   other: 'Other'
 }
-export default function AddStudent() {
+const AddStudent: React.FC = () => {
   const [formState, setFormState] = useState<FormStateType>(initialFormState)
   const addMatch = useMatch('/students/add')
   const isAddMode = Boolean(addMatch)
@@ -104,8 +104,8 @@ export default function AddStudent() {
             type='text'
             name='floating_email'
             id='floating_email'
-            className='peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-sm text-gray-900 focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
-            placeholder=' '
+            className='peer block w-full appearance-none border-0 border-b-2 border-gray-300 bg-transparent py-2.5 px-0 text-black focus:border-blue-600 focus:outline-none focus:ring-0 dark:border-gray-600 dark:text-white dark:focus:border-blue-500'
+            placeholder=''
             value={formState.email}
             onChange={handleChange('email')}
             required
@@ -277,3 +277,4 @@ export default function AddStudent() {
     </div>
   )
 }
+export default AddStudent;
