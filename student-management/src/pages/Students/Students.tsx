@@ -28,13 +28,8 @@ export default function Students() {
   const studentsQuery = useQuery({
     queryKey: ['students', page],
     queryFn: () => {
-      const controller = new AbortController()
-      setTimeout(() => {
-        controller.abort()
-      }, 5000)
-      return getStudents(page, LIMIT, controller.signal)
+      return getStudents(page, LIMIT)
     },
-    keepPreviousData: true,
     retry: 0
   })
 
